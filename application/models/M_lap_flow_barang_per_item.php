@@ -48,6 +48,7 @@ public function select_range_date($from_date,$to_date,$barang_id,$kategori_id)
 
     $this->db->where("T_M_D_BARANG.BARANG_ID='{$barang_id}'");
 
+
     if($kategori_id!=0)
     {
         $this->db->where("T_M_D_BARANG.KATEGORI_ID='{$kategori_id}'");

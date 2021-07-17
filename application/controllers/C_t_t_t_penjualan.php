@@ -2,6 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 
+
 class C_t_t_t_penjualan extends MY_Controller
 {
 

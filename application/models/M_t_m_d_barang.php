@@ -47,6 +47,7 @@ public function select_by_kategori($kategori_id)
 
   $this->db->where("POSTFIX_ID={$this->session->userdata('postfix_id')}");
 
+  $this->db->where('COMPANY_ID',$this->session->userdata('company_id'));
   $this->db->order_by("BARANG", "asc");
   $akun = $this->db->get ();
   return $akun->result ();
