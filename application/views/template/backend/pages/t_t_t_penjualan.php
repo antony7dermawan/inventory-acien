@@ -71,13 +71,9 @@
                 echo "<a "; #/1 ini artinya kena pajak
 
                 echo "onclick= 'p_1_" . $key . "()'";
-                if ($value->PRINTED == 'f') {
+             
                   echo "> <i class='fa fa-print text-c-black'></i></a> ";
-                }
-                if ($value->PRINTED == 't') {
-                  echo "> <i class='fa fa-print text-c-green'></i></a> ";
-                  
-                }
+              
 
                 echo "<script>";
                 echo "function p_1_" . $key . "()";
@@ -93,18 +89,31 @@
                 echo "<a "; #/1 ini artinya kena pajak
 
                 echo "onclick= 'p_2_" . $key . "()'";
-                if ($value->PRINTED == 'f') {
+          
                   echo "> <i class='fa fa-print text-c-blue'></i></a> ";
-                }
-                if ($value->PRINTED == 't') {
-                  echo "> <i class='fa fa-print text-c-green'></i></a> ";
-                  
-                }
+          
 
                 echo "<script>";
                 echo "function p_2_" . $key . "()";
                 echo "{";
                 echo "window.open('laporan_pdf/c_t_t_t_penjualan2_print/index/" . $value->ID . "');";
+                echo "}";
+                echo "</script>";
+
+
+
+                echo "<a "; #/1 ini artinya kena pajak
+
+                echo "onclick= 'p_3_" . $key . "()'";
+          
+                  echo "> <i class='fa fa-file-text text-c-green'></i></a> ";
+                
+                
+
+                echo "<script>";
+                echo "function p_3_" . $key . "()";
+                echo "{";
+                echo "window.open('laporan_pdf/c_t_t_t_penjualan3_print/index/" . $value->ID . "');";
                 echo "}";
                 echo "</script>";
 
