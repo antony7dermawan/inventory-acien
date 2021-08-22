@@ -39,7 +39,7 @@ class C_t_t_t_po_manual extends MY_Controller
       "c_t_m_d_payment_method" => $this->m_t_m_d_payment_method->select(),
       "c_t_m_d_supplier" => $this->m_t_m_d_supplier->select(),
       "title" => "Transaksi PO Manual",
-      "description" => "form PO Manual"
+      "description" => "Menampilkan Seluruh Invoice 30 Hari Sebelum Tanggal Terpilih"
     ];
     $this->render_backend('template/backend/pages/t_t_t_po_manual', $data);
   }

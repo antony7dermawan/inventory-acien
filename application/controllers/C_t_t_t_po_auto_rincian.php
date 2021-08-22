@@ -32,8 +32,8 @@ class C_t_t_t_po_auto_rincian extends MY_Controller
       "c_t_m_d_barang" => $this->m_t_m_d_barang->select(),
       "c_t_m_d_supplier" => $this->m_t_m_d_supplier->select(),
       "pembelian_id" => $po_auto_id,
-      "title" => "Transaksi PO Auto",
-      "description" => "form PO Auto"
+      "title" => "Rincian Transaksi PO Auto",
+      "description" => ""
     ];
     $this->render_backend('template/backend/pages/t_t_t_po_auto_rincian', $data);
   }

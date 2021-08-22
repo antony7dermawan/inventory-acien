@@ -32,7 +32,7 @@ class C_t_t_t_retur_pemakaian extends MY_Controller
 
       "select_inv_pemakaian"  => $this->m_t_t_t_pemakaian->select_inv_pemakaian(),
       "title" => "Transaksi Retur Pemakaian",
-      "description" => "form Pemakaian"
+      "description" => "Menampilkan Seluruh Invoice 30 Hari Sebelum Tanggal Terpilih"
     ];
     $this->render_backend('template/backend/pages/t_t_t_retur_pemakaian', $data);
   }

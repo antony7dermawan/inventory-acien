@@ -1,4 +1,4 @@
-<div class="pcoded-navigation-label">Navigation</div>
+<div class="pcoded-navigation-label">Menu</div>
 <ul class="pcoded-item pcoded-left-item">
 
 
@@ -337,3 +337,5 @@ if($username=='antony@acien' )
 
 
 </ul>
+
+

@@ -229,9 +229,9 @@
                         $r_inv[$key]=$value->INV;
                         $r_table_code[$key]=$value->TABLE_CODE;
 
-                        $r_qty[$key]=$value->QTY;
-                        $r_harga[$key]=$value->HARGA;
-                        $r_sub_total[$key]=$value->SUB_TOTAL;
+                        $r_qty[$key]=$value->SUM_QTY;
+                        $r_harga[$key]=$value->AVG_HARGA;
+                        $r_sub_total[$key]=$value->SUM_SUB_TOTAL;
                         $r_created_by[$key]=$value->CREATED_BY;
                         $r_updated_by[$key]=$value->UPDATED_BY;
 
@@ -244,11 +244,21 @@
 
                   $sum_sum_total_harga=0;
 
+                  $sum_qty_pembelian =0;
+                  $sum_qty_penjualan =0;
+                  $sum_qty_retur_pembelian =0;
+                  $sum_qty_retur_penjualan =0;
+                  $sum_qty_pemakaian=0;
+                  $sum_qty_retur_pemakaian=0;
+
 
                   $qty_pembelian =0;
                   $qty_penjualan =0;
                   $qty_retur_pembelian =0;
                   $qty_retur_penjualan =0;
+
+                  $qty_pemakaian=0;
+                  $qty_retur_pemakaian=0;
 
 
                   if($data_logic==1)
@@ -337,7 +347,9 @@
                             
 
                             if($r_table_code[$i]=='PEMBELIAN')
-                            {
+                            { 
+                              $sum_qty_pembelian = $sum_qty_pembelian+$r_qty[$i];
+                              $qty_plus_min = '+'.$r_qty[$i];
                               $stok_awal = $stok_awal + $r_qty[$i];
                               $read_select = $this->m_t_t_t_pembelian->select_by_id($r_id[$i]);
                               foreach ($read_select as $key => $value) 
@@ -359,6 +371,8 @@
 
                             if($r_table_code[$i]=='RETUR_PEMBELIAN')
                             {
+                              $sum_qty_retur_pembelian = $sum_qty_retur_pembelian+$r_qty[$i];
+                              $qty_plus_min = '-'.$r_qty[$i];
                               $stok_awal = $stok_awal - $r_qty[$i];
                               $read_select = $this->m_t_t_t_retur_pembelian->select_by_id($r_id[$i]);
                               foreach ($read_select as $key => $value) 
@@ -379,8 +393,10 @@
 
 
 
-                            if($r_table_code[$i]=='PENJUALAN' or $r_table_code[$i]=='PEMAKAIAN')
+                            if($r_table_code[$i]=='PENJUALAN')
                             {
+                              $sum_qty_penjualan = $sum_qty_penjualan+$r_qty[$i];
+                              $qty_plus_min = '-'.$r_qty[$i];
                               $stok_awal = $stok_awal - $r_qty[$i];
                               $read_select = $this->m_t_t_t_penjualan->select_by_id($r_id[$i]);
                               foreach ($read_select as $key => $value) 
@@ -411,10 +427,79 @@
 
 
 
-                            if($r_table_code[$i]=='RETUR_PENJUALAN' or $r_table_code[$i]=='RETUR_PEMAKAIAN')
+                            if($r_table_code[$i]=='PEMAKAIAN')
                             {
+                              $sum_qty_pemakaian = $sum_qty_pemakaian+$r_qty[$i];
+                              $qty_plus_min = '-'.$r_qty[$i];
+                              $stok_awal = $stok_awal - $r_qty[$i];
+                              $read_select = $this->m_t_t_t_pemakaian->select_by_id($r_id[$i]);
+                              foreach ($read_select as $key => $value) 
+                              {
+                                $pelanggan = $value->PELANGGAN;
+                                $sales = $value->SALES;
+                                $no_polisi = $value->NO_POLISI;
+                                $supir = $value->SUPIR;
+                                $payment_method = $value->PAYMENT_METHOD;
+                                $lokasi = $value->LOKASI;
+
+
+                                $sheet->setCellValue('Q'.$row, $pelanggan);
+                                $sheet->getStyle('Q'.$row)->getAlignment()->setHorizontal('center');
+                                $sheet->setCellValue('R'.$row, $sales);
+                                $sheet->getStyle('R'.$row)->getAlignment()->setHorizontal('center');
+                                $sheet->setCellValue('S'.$row, $no_polisi);
+                                $sheet->getStyle('S'.$row)->getAlignment()->setHorizontal('center');
+                                $sheet->setCellValue('T'.$row, $supir);
+                                $sheet->getStyle('T'.$row)->getAlignment()->setHorizontal('center');
+                                $sheet->setCellValue('U'.$row, $lokasi);
+                                $sheet->getStyle('U'.$row)->getAlignment()->setHorizontal('center');
+                                $sheet->setCellValue('V'.$row, $payment_method);
+                                $sheet->getStyle('V'.$row)->getAlignment()->setHorizontal('center');
+
+                              }
+                            }
+
+
+
+                            if($r_table_code[$i]=='RETUR_PENJUALAN')
+                            {
+                              $sum_qty_retur_penjualan = $sum_qty_retur_penjualan+$r_qty[$i];
+                              $qty_plus_min = '+'.$r_qty[$i];
                               $stok_awal = $stok_awal + $r_qty[$i];
                               $read_select = $this->m_t_t_t_retur_penjualan->select_by_id($r_id[$i]);
+                              foreach ($read_select as $key => $value) 
+                              {
+                                $pelanggan = $value->PELANGGAN;
+                                $sales = $value->SALES;
+                                $no_polisi = $value->NO_POLISI;
+                                $supir = $value->SUPIR;
+                                $payment_method = $value->PAYMENT_METHOD;
+                                $lokasi = $value->LOKASI;
+
+
+                                $sheet->setCellValue('Q'.$row, $pelanggan);
+                                $sheet->getStyle('Q'.$row)->getAlignment()->setHorizontal('center');
+                                $sheet->setCellValue('R'.$row, $sales);
+                                $sheet->getStyle('R'.$row)->getAlignment()->setHorizontal('center');
+                                $sheet->setCellValue('S'.$row, $no_polisi);
+                                $sheet->getStyle('S'.$row)->getAlignment()->setHorizontal('center');
+                                $sheet->setCellValue('T'.$row, $supir);
+                                $sheet->getStyle('T'.$row)->getAlignment()->setHorizontal('center');
+                                $sheet->setCellValue('U'.$row, $lokasi);
+                                $sheet->getStyle('U'.$row)->getAlignment()->setHorizontal('center');
+                                $sheet->setCellValue('V'.$row, $payment_method);
+                                $sheet->getStyle('V'.$row)->getAlignment()->setHorizontal('center');
+
+                              }
+                            }
+
+
+                            if($r_table_code[$i]=='RETUR_PEMAKAIAN')
+                            {
+                              $sum_qty_retur_pemakaian = $sum_qty_retur_pemakaian+$r_qty[$i];
+                              $qty_plus_min = '+'.$r_qty[$i];
+                              $stok_awal = $stok_awal + $r_qty[$i];
+                              $read_select = $this->m_t_t_t_retur_pemakaian->select_by_id($r_id[$i]);
                               foreach ($read_select as $key => $value) 
                               {
                                 $pelanggan = $value->PELANGGAN;
@@ -451,7 +536,7 @@
                             
 
 
-                            $sheet->setCellValue('J'.$row, $r_qty[$i]);
+                            $sheet->setCellValue('J'.$row, $qty_plus_min);
                             $sheet->getStyle('J'.$row)->getAlignment()->setHorizontal('center');
                             $sheet->setCellValue('K'.$row, $r_harga[$i]);
                             $sheet->getStyle('K'.$row)->getAlignment()->setHorizontal('center');
@@ -518,6 +603,66 @@
                                   ->getStyle('M'.$row.':M'.$row)
                                   ->getNumberFormat()
                                   ->setFormatCode(NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+                  
+
+                  $row = $row + 2;
+                            $sheet->setCellValue('L'.$row, "Total Pembelian:");
+                            $sheet->getStyle('L'.$row)->getAlignment()->setHorizontal('center');
+                            $sheet->setCellValue('M'.$row, $sum_qty_pembelian);
+                            $sheet->getStyle('M'.$row)->getAlignment()->setHorizontal('left');
+
+                            $sheet->setCellValue('N'.$row, "Total Retur Pembelian:");
+                            $sheet->getStyle('N'.$row)->getAlignment()->setHorizontal('center');
+                            $sheet->setCellValue('O'.$row, $sum_qty_retur_pembelian);
+                            $sheet->getStyle('O'.$row)->getAlignment()->setHorizontal('left');
+                            $spreadsheet->getActiveSheet()
+                                  ->getStyle('M'.$row.':O'.$row)
+                                  ->getNumberFormat()
+                                  ->setFormatCode(NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+
+
+                  $row = $row + 1;
+                            $sheet->setCellValue('L'.$row, "Total Penjualan:");
+                            $sheet->getStyle('L'.$row)->getAlignment()->setHorizontal('center');
+                            $sheet->setCellValue('M'.$row, $sum_qty_penjualan);
+                            $sheet->getStyle('M'.$row)->getAlignment()->setHorizontal('left');
+
+                            $sheet->setCellValue('N'.$row, "Total Retur Penjualan:");
+                            $sheet->getStyle('N'.$row)->getAlignment()->setHorizontal('center');
+                            $sheet->setCellValue('O'.$row, $sum_qty_retur_penjualan);
+                            $sheet->getStyle('O'.$row)->getAlignment()->setHorizontal('left');
+
+                            $spreadsheet->getActiveSheet()
+                                  ->getStyle('M'.$row.':O'.$row)
+                                  ->getNumberFormat()
+                                  ->setFormatCode(NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+                  $row = $row + 1;
+                            $sheet->setCellValue('L'.$row, "Total Pemakaian:");
+                            $sheet->getStyle('L'.$row)->getAlignment()->setHorizontal('center');
+                            $sheet->setCellValue('M'.$row, $sum_qty_pemakaian);
+                            $sheet->getStyle('M'.$row)->getAlignment()->setHorizontal('left');
+
+                            $sheet->setCellValue('N'.$row, "Total Retur Pemakaian:");
+                            $sheet->getStyle('N'.$row)->getAlignment()->setHorizontal('center');
+                            $sheet->setCellValue('O'.$row, $sum_qty_retur_pemakaian);
+                            $sheet->getStyle('O'.$row)->getAlignment()->setHorizontal('left');
+                            $spreadsheet->getActiveSheet()
+                                  ->getStyle('M'.$row.':O'.$row)
+                                  ->getNumberFormat()
+                                  ->setFormatCode(NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+                        $alp='A';
+                        $total_alp=23;
+                        for($n=0;$n<=$total_alp;$n++)
+                        {
+                              $area = $alp.$row;
+                              
+                              $spreadsheet->getActiveSheet()->getStyle($area)
+                                        ->getBorders()->getBottom()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                              
+                              $alp++;
+                        }
+
+                          
                   
 
                   }#end of data logic ==1

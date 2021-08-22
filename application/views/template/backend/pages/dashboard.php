@@ -15,7 +15,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5>Rekap Seluruh Transaksi
+                <h5>Tanggal Transaksi
 
                 <form action='<?php echo base_url("c_dashboard/search_date_3"); ?>' class='no_voucer_area' method="post" id=''>
                   <table>
@@ -46,6 +46,7 @@
               <div class="card-block">
                 <div class="dt-responsive table-responsive">
 
+                  
 
                   <?php
                   $total_pembelian = 0;
@@ -107,7 +108,21 @@
                   echo "</div>";
 
 
+
+
+
                   ?>
+
+
+                  <script src="https://code.highcharts.com/highcharts.js"></script>
+                  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+                  <figure class="highcharts-figure">
+                      <div id="container"></div>
+                      
+                  </figure>
                   
                 </div>
               </div>
@@ -118,7 +133,7 @@
 
                   <?php
                   
-
+                  /*
 
                   echo "<div class='col-xl-5 col-md-6'>";
                   echo "<div class='card prod-p-card card-green'>";
@@ -267,6 +282,8 @@
                   echo "</div>";
                   echo "</div>";
                   
+
+                  */
 
                   ?>
 
@@ -452,3 +469,123 @@
 
 
         </div>
+
+
+
+
+
+
+
+<style type="text/css">
+    
+.highcharts-figure, .highcharts-data-table table {
+    min-width: 320px; 
+    max-width: 800px;
+    margin: 1em auto;
+}
+
+.highcharts-data-table table {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #EBEBEB;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+.highcharts-data-table th {
+    font-weight: 600;
+    padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+    padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+
+
+input[type="number"] {
+    min-width: 50px;
+}
+</style>
+
+
+
+
+
+<script type="text/javascript">
+    
+Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Rekap Seluruh Transaksi'
+    },
+    tooltip: {
+        pointFormat: '{series.name}/ <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>/ {point.percentage:.1f} %'
+            }
+        }
+    },
+    series: [{
+        name: 'Nilai',
+        colorByPoint: true,
+        data: [ {
+            name: 'Pembelian <?='Rp '.number_format($total_pembelian)?>',
+            y: <?=($total_pembelian)?>,
+            color: 'LightCoral'
+        }, {
+            name: 'Retur Pembelian <?='Rp '.number_format($total_retur_pembelian)?>',
+            y: <?=($total_retur_pembelian)?>,
+            color: 'LightPink'
+        }, {
+            name: 'Penjualan <?='Rp '.number_format($total_penjualan)?>',
+            y: <?=($total_penjualan)?>,
+            color: 'LightSeaGreen'
+        }, {
+            name: 'Retur Penjualan <?='Rp '.number_format($total_retur_penjualan)?>',
+            y: <?=($total_retur_penjualan)?>,
+            color: 'LightGreen'
+        }, {
+            name: 'Pemakaian <?='Rp '.number_format($total_pemakaian)?>',
+            y: <?=($total_pemakaian)?>,
+            color:'gold'
+        }, {
+            name: 'Retur Pemakaian <?='Rp '.number_format($total_retur_pemakaian)?>',
+            y: <?=($total_retur_pemakaian)?>,
+            color: 'LemonChiffon'
+        }, {
+            name: 'Laba Bersih <?='Rp '.number_format($laba_bersih)?>',
+            y: <?=($laba_bersih)?>,
+            sliced: true,
+            selected: true,
+            color:'DodgerBlue'
+        }]
+    }]
+});
+</script>

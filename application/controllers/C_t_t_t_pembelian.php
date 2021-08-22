@@ -38,7 +38,7 @@ class C_t_t_t_pembelian extends MY_Controller
       "c_t_m_d_payment_method" => $this->m_t_m_d_payment_method->select(),
       "c_t_m_d_supplier" => $this->m_t_m_d_supplier->select(),
       "title" => "Transaksi Pembelian",
-      "description" => "form Pembelian"
+      "description" => "Menampilkan Seluruh Invoice 30 Hari Sebelum Tanggal Terpilih"
     ];
     $this->render_backend('template/backend/pages/t_t_t_pembelian', $data);
   }

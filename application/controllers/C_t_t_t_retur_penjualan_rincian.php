@@ -37,15 +37,11 @@ class C_t_t_t_retur_penjualan_rincian extends MY_Controller
       "c_t_t_t_retur_penjualan_by_id" => $this->m_t_t_t_retur_penjualan->select_by_id($retur_penjualan_id),
 
 
-
-
-
-
       "c_t_m_d_barang" => $this->m_t_t_t_retur_penjualan_rincian->select_barang_id($retur_penjualan_id),
       
       "retur_penjualan_id" => $retur_penjualan_id,
-      "title" => "Transaksi Penjualan",
-      "description" => "form Penjualan"
+      "title" => "Rincian Transaksi Retur Penjualan",
+      "description" => ""
     ];
     $this->render_backend('template/backend/pages/t_t_t_retur_penjualan_rincian', $data);
   }

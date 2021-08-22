@@ -31,7 +31,7 @@ class C_t_t_t_retur_penjualan extends MY_Controller
 
       "select_inv_penjualan"  => $this->m_t_t_t_penjualan->select_inv_penjualan(),
       "title" => "Transaksi Retur Penjualan",
-      "description" => "form Penjualan"
+      "description" => "Menampilkan Seluruh Invoice 30 Hari Sebelum Tanggal Terpilih"
     ];
     $this->render_backend('template/backend/pages/t_t_t_retur_penjualan', $data);
   }

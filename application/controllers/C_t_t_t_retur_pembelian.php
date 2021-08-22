@@ -32,7 +32,7 @@ class C_t_t_t_retur_pembelian extends MY_Controller
 
       "select_inv_pembelian"  => $this->m_t_t_t_pembelian->select_inv_pembelian(),
       "title" => "Transaksi Retur Pembelian",
-      "description" => "form Pembelian"
+      "description" => "Menampilkan Seluruh Invoice 30 Hari Sebelum Tanggal Terpilih"
     ];
     $this->render_backend('template/backend/pages/t_t_t_retur_pembelian', $data);
   }

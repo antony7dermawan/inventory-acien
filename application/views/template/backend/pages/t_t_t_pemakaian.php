@@ -89,29 +89,9 @@
 
 
 
-                echo "<a "; #/1 ini artinya kena pajak
-
-                echo "onclick= 'p_2_" . $key . "()'";
-                if ($value->PRINTED == 'f') {
-                  echo "> <i class='fa fa-print text-c-blue'></i></a> ";
-                }
-                if ($value->PRINTED == 't') {
-                  echo "> <i class='fa fa-print text-c-green'></i></a> ";
-                  
-                }
-
-                echo "<script>";
-                echo "function p_2_" . $key . "()";
-                echo "{";
-                echo "window.open('laporan_pdf/c_t_t_t_pemakaian2_print/index/" . $value->ID . "');";
-                echo "}";
-                echo "</script>";
+                
 
 
-                if($value->ENABLE_EDIT==0)
-                {
-                  echo "<a class='fa text-c-green'>Sudah Ditagih</a>";
-                }
               }
               
 
