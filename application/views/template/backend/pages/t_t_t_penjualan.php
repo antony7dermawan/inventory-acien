@@ -31,9 +31,9 @@
             <th>No</th>
             <th>INV</th>
             <th>Date</th>
-            <th>Ket</th>
+            
             <th>Pelanggan</th>
-            <th>Payment Method</th>
+            
             <th>Total</th>
 
             <th>Action</th>
@@ -48,9 +48,9 @@
               echo "<td>" . ($key + 1) . "</td>";
               echo "<td>" . $value->INV_HEAD.$value->INV . "</td>";
               echo "<td>" . date('d-m-Y', strtotime($value->DATE)) . " / " . date('H:i', strtotime($value->TIME)) . "</td>";
-              echo "<td>" . $value->KET . "</td>";
+              
               echo "<td>" . $value->PELANGGAN . "</td>";
-              echo "<td>" . $value->PAYMENT_METHOD . "</td>";
+              
 
 
 
@@ -64,7 +64,9 @@
 
               
               echo "<td>";
-
+                echo "<a href='javascript:void(0);' data-toggle='modal' data-target='#Modal_Edit' class='btn-edit' data-id='" . $value->ID . "'>";
+                echo "<i class='icon feather icon-edit f-w-600 f-16 m-r-15 text-c-green'></i>";
+                echo "</a>";
 
               if (intval($value->SUM_SUB_TOTAL) != 0)
               {
@@ -128,9 +130,7 @@
 
 
               if ($value->SUM_SUB_TOTAL == 0) {
-                echo "<a href='javascript:void(0);' data-toggle='modal' data-target='#Modal_Edit' class='btn-edit' data-id='" . $value->ID . "'>";
-                echo "<i class='icon feather icon-edit f-w-600 f-16 m-r-15 text-c-green'></i>";
-                echo "</a>";
+                
 
                 echo "<a href='" . site_url('c_t_t_t_penjualan/delete/' . $value->ID) . "' ";
 
@@ -159,10 +159,9 @@
               echo "<td><s>" . ($key + 1) . "</s></td>";
               echo "<td><s>" . $value->INV . "</td>";
               echo "<td><s>" . date('d-m-Y', strtotime($value->DATE)) . " / " . date('H:i', strtotime($value->TIME)) . "</s></td>";
-              echo "<td><s>" . $value->KET . "</s></td>";
+              
               echo "<td><s>" . $value->PELANGGAN . "</s></td>";
-              echo "<td><s>" . $value->PAYMENT_METHOD . "</s></td>";
-
+              
 
 
               //satu button
