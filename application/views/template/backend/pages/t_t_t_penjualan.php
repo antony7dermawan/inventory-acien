@@ -31,6 +31,7 @@
             <th>No</th>
             <th>INV</th>
             <th>Date</th>
+            <th>Ket</th>
             
             <th>Pelanggan</th>
             
@@ -49,6 +50,7 @@
               echo "<td>" . $value->INV_HEAD.$value->INV . "</td>";
               echo "<td>" . date('d-m-Y', strtotime($value->DATE)) . " / " . date('H:i', strtotime($value->TIME)) . "</td>";
               
+              echo "<td>" . $value->KET . "</td>";
               echo "<td>" . $value->PELANGGAN . "</td>";
               
 
@@ -160,6 +162,7 @@
               echo "<td><s>" . $value->INV . "</td>";
               echo "<td><s>" . date('d-m-Y', strtotime($value->DATE)) . " / " . date('H:i', strtotime($value->TIME)) . "</s></td>";
               
+              echo "<td><s>" . $value->KET . "</s></td>";
               echo "<td><s>" . $value->PELANGGAN . "</s></td>";
               
 
