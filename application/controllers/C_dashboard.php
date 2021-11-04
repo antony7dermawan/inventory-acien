@@ -93,7 +93,15 @@ class C_dashboard extends MY_Controller
       "description" => "Integrated Inventory System"
     ];
 
-    $this->render_backend('template/backend/pages/dashboard', $data);
+    if($this->session->userdata('level_user_id')==1)
+    {
+      $this->render_backend('template/backend/pages/dashboard', $data);
+    }
+    if($this->session->userdata('level_user_id')>1)
+    {
+      $this->render_backend('template/backend/pages/blank', $data);
+    }
+
   }
 
   public function search_date_1()
