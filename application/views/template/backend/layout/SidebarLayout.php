@@ -37,7 +37,7 @@
 <?php
 $level_user_id = $this->session->userdata('level_user_id');
 $username = $this->session->userdata('username');
-if($level_user_id==1)
+if($level_user_id>=1)
 {
     ?>
     
