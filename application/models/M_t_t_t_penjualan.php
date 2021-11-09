@@ -437,6 +437,22 @@ public function select_range_date($from_date,$to_date,$kredit_logic,$sales_id,$p
     return $akun->result ();
   }
 
+  public function select_last_id()
+  {
+    
+    $this->db->limit(1);
+    $this->db->select("ID");
+    $this->db->from('T_T_T_PENJUALAN');
+    $this->db->where("COMPANY_ID={$this->session->userdata('company_id')}");
+
+    $this->db->where("T_T_T_PENJUALAN.POSTFIX_ID={$this->session->userdata('postfix_id')}");
+
+    $this->db->order_by("ID", "desc");
+
+    $akun = $this->db->get ();
+    return $akun->result ();
+  }
+
    
 
 

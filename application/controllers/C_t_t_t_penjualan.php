@@ -171,6 +171,13 @@ class C_t_t_t_penjualan extends MY_Controller
 
       $this->m_t_t_t_penjualan->tambah($data);
 
+      $read_select = $this->m_t_t_t_penjualan->select_last_id();
+      foreach ($read_select as $key => $value) 
+      {
+        $last_penjualan_id = ($value->ID);
+      }
+
+      redirect('c_t_t_t_penjualan_rincian/index/'.$last_penjualan_id);
 
 
       
@@ -182,11 +189,12 @@ class C_t_t_t_penjualan extends MY_Controller
     else
     {
       $this->session->set_flashdata('notif', '<div class="alert alert-danger icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="icofont icofont-close-line-circled"></i></button><p><strong>Gagal!</strong> Data Tidak Lengkap!</p></div>');
+      redirect('c_t_t_t_penjualan');
     }
     
 
     
-    redirect('c_t_t_t_penjualan');
+    
   }
 
 
