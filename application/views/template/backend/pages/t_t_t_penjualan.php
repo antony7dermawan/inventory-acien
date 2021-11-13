@@ -72,11 +72,11 @@
 
               if (intval($value->SUM_SUB_TOTAL) != 0)
               {
-                echo "<a "; #/1 ini artinya kena pajak
+                echo "<a class='btn btn-success btn-mini waves-effect waves-light'"; #/1 ini artinya kena pajak
 
                 echo "onclick= 'p_1_" . $key . "()'";
              
-                  echo "> <i class='fa fa-print text-c-black'></i></a> ";
+                  echo ">P.A5 <i></i></a> ";
               
 
                 echo "<script>";
@@ -90,11 +90,11 @@
 
 
 
-                echo "<a "; #/1 ini artinya kena pajak
+                echo "<a class='btn btn-primary btn-mini waves-effect waves-light'"; #/1 ini artinya kena pajak
 
                 echo "onclick= 'p_2_" . $key . "()'";
           
-                  echo "> <i class='fa fa-print text-c-blue'></i></a> ";
+                  echo ">P.SJ<i></i></a> ";
           
 
                 echo "<script>";
@@ -106,11 +106,11 @@
 
 
 
-                echo "<a "; #/1 ini artinya kena pajak
+                echo "<a class='btn btn-success btn-mini waves-effect waves-light'"; #/1 ini artinya kena pajak
 
                 echo "onclick= 'p_3_" . $key . "()'";
           
-                  echo "> <i class='fa fa-file-text text-c-green'></i></a> ";
+                  echo ">Receipt<i></i></a> ";
                 
                 
 
