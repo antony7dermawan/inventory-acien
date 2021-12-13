@@ -64,6 +64,22 @@
     <!-- Tombol untuk menambah data akun !-->
     
 
+
+
+    <button type='button' class='btn btn-primary' onclick='call_download()'>Download Excel</button>
+
+
+    <script type="text/javascript">
+      function call_download() {
+        var link_1 = 'laporan_excel/lap_info_stok/';
+       
+
+        window.open(link_1);
+      }
+    </script>
+
+
+    
     <div class="table-responsive dt-responsive">
       <table id="dom-jqry" class="table table-striped table-bordered nowrap">
         <thead>
